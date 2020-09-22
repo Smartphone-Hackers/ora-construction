@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<nav class="page-breadcrumb text-right">
+    <a href="{% url 'add-work-specialization' %}" class="btn btn-success">Add New Work Specialization</a>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+<div class="card">
+<div class="card-body">
+<h6 class="card-title">Work Specialization</h6>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger" specialization="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="table-responsive">
+  <table id="dataTableExample" class="table">
+    <thead>
+      <tr>
+        <th>Work Specialization</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for work in workspecialization %}
+            <tr>
+                <td>{{ work.workspecialization }}</td>
+                <td>
+                    <div class="btn-group" specialization="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="{% url 'edit-work-specialization' pk=work.id %}">Edit</a>
+                            <a class="dropdown-item" href="{% url 'delete-work-specialization' pk=work.id %}">Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

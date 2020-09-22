@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<nav class="page-breadcrumb text-right">
+    <a href="{% url 'add-company' %}" class="btn btn-success">Add New Company</a>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+<div class="card">
+<div class="card-body">
+<h6 class="card-title">Company</h6>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="table-responsive">
+  <table id="dataTableExample" class="table">
+    <thead>
+      <tr>
+        <th>Company Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for comp in company %}
+            <tr>
+                <td>{{ comp.company_name }}</td>
+                <td>{{ comp.email }}</td>
+                <td>{{ comp.phone_number }}</td>
+                <td>{{ comp.address }}</td>
+                <td>
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Action
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a class="dropdown-item" href="{% url 'edit-company' pk=comp.id %}">Edit</a>
+                            <a class="dropdown-item" href="{% url 'delete-company' pk=comp.id %}">Delete</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+</div>
+</div>
+</div>
+    </div>
+</div>
+
+{% endblock %}

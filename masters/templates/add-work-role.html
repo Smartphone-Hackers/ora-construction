@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">New Work Role</h6>
+                    
+                    <form method="POST">    
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="control-label">Work Role</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter first name"> -->
+                                    {{ form.workrole }}
+                                </div>
+                            </div><!-- Col -->
+                        </div><!-- Row -->
+                        <input type="submit" class="btn btn-primary submit" value="submit">
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

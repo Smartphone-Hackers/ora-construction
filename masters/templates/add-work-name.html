@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">New Work Category</h6>
+                    
+                    <form method="POST">    
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Work Category</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter first name"> -->
+                                    {{ form.workname }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Work Role</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter first name"> -->
+                                    {{ form.workrole }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Work Specialization</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter first name"> -->
+                                    {{ form.workspecialization }}
+                                </div>
+                            </div><!-- Col -->
+                        </div><!-- Row -->
+                        <input type="submit" class="btn btn-primary submit" value="submit">
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
