@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<nav class="page-breadcrumb text-right">
+    <a href="{% url 'new-tender' %}" class="btn btn-success">Add New Tender</a>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">Tender List</h6>
+                    <form method="GET">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Project Code</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Project Code"> -->
+                                    {{ form.project_code }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Project Name</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter Project name"> -->
+                                    {{ form.project_name }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label class="control-label">Department Name</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                    {{ form.department_name }}
+                                </div>
+                            </div><!-- Col -->
+                        </div><!-- Row -->
+                        
+                        <input type="submit" class="btn btn-primary submit" value="Search">
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<nav class="page-breadcrumb text-right">
+    <a href="{% url 'tender-excel-report' %}">
+        <i class="btn-icon-prepend" data-feather="download"></i>
+        Export
+    </a>
+</nav>
+
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-success" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <div class="table-responsive pt-3">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Project <br> Code
+                                </th>
+                                <th>
+                                    Project <br> Name
+                                </th>
+                                <th>
+                                    Department
+                                </th>
+                                <th>
+                                    Work <br> Category
+                                </th>
+                                <th>
+                                    Auction <br> Date
+                                </th>
+                                <th>
+                                    Published <br> Date
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Project <br> Start Date
+                                </th>
+                                <th>
+                                    Project <br> End Date
+                                </th>
+                                <th>
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for tender in tenders %}
+                                <tr>
+                                    <td>{{ tender.project_code }}</td>
+                                    <td>{{ tender.project_title }}</td>
+                                    <td>{{ tender.department.department }}</td>
+                                    <td>{{ tender.work_category.category }}</td>
+                                    <td>{{ tender.tender_auction_date }}</td>
+                                    <td>{{ tender.tender_publish_date }}</td>
+                                    <td>status</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Action
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <a class="dropdown-item" href="{% url 'tender-approval' %}">Approve</a>
+                                                <a class="dropdown-item" href="#">Reject</a>
+                                                <a class="dropdown-item" href="#">Participant List</a>
+                                                <a class="dropdown-item" href="{% url 'edit-tender-detail' pk=tender.id %}">Edit</a>
+                                                <a class="dropdown-item" href="{% url 'delete-tender-detail' pk=tender.id %}">Delete</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                {% if tenders.has_other_pages %}
+                    <nav class="pagination justify-content-end">
+                        <ul class="pagination">
+                            {% if tenders.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{current_url}}page={{tenders.previous_page_number}}">Previous</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disable">
+                                    <a class="page-link" href="#">Previous</a>
+                                </li>
+                            {% endif %}
+                            {% for page in tenders.paginator.page_range %}
+                                {% if tenders.number == page %}
+                                    <li class="page-item active">
+                                        <a class="page-link" href="{{current_url}}page={{page}}">{{ page }}</a>
+                                    </li>
+                                {% elif page > tenders.number|add:'-5' and page < tenders.number|add:'5' %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{current_url}}page={{page}}">{{ page }}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if tenders.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{current_url}}page={{tenders.next_page_number}}">Next</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item disable">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

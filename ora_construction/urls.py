@@ -21,4 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Dashboard.as_view(), name='dashboard'),
     path('masters/', include('masters.urls')),
+    path('tender/', include('tender.urls')),
+    path('tender-api/', include('tender_api.urls')),
 ]

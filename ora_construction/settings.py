@@ -15,6 +15,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 MASTER_TEMPLATES = os.path.join(BASE_DIR, 'masters/templates')
+TENDER_TEMPLATES = os.path.join(BASE_DIR, 'tender/templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -37,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'masters',
+    'tender',
 ]
 
 MIDDLEWARE = [
@@ -55,7 +58,7 @@ ROOT_URLCONF = 'ora_construction.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [MASTER_TEMPLATES,],
+        'DIRS': [MASTER_TEMPLATES, TENDER_TEMPLATES,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

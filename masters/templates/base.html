@@ -60,12 +60,12 @@
           
           <li class="nav-item nav-category">Masters</li>
           <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#advancedUI" role="button" aria-expanded="false" aria-controls="advancedUI">
+            <a class="nav-link" data-toggle="collapse" href="#masters" role="button" aria-expanded="false" aria-controls="advancedUI">
               <i class="link-icon" data-feather="anchor"></i>
               <span class="link-title">Masters</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
-            <div class="collapse" id="advancedUI">
+            <div class="collapse" id="masters">
               <ul class="nav sub-menu">
                 <li class="nav-item">
                   <a href="{% url 'company' %}" class="nav-link">Company</a>
@@ -88,6 +88,25 @@
                 <li class="nav-item">
                   <a href="{% url 'work-specialization' %}" class="nav-link">Worker Specialization</a>
                 </li>
+              </ul>
+            </div>
+		  </li>
+
+		  <li class="nav-item nav-category">Tender</li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#tender" role="button" aria-expanded="false" aria-controls="advancedUI">
+              <i class="link-icon" data-feather="anchor"></i>
+              <span class="link-title">Tender</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="tender">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <a href="{% url 'tender' %}" class="nav-link">Tender Lists</a>
+				</li>
+				<li class="nav-item">
+					<a href="{% url 'tender-approval' %}" class="nav-link">Tender Approval</a>
+				  </li>
               </ul>
             </div>
           </li>
@@ -396,6 +415,7 @@
   <script src="{% static 'assets/js/data-table.js' %}"></script>
   <script src="{% static 'assets/js/sweet-alert.js' %}"></script>
   <!-- end custom js for this page -->
-  
+  <!-- my js -->
+  <script src="{% static 'assets/my_js/tender.js' %}"></script>
 </body>
 </html>    

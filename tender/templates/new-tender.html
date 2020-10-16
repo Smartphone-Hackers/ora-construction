@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12 stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="card-title">New Tender</h6>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-success" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <form method="POST">    
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Company Name</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter first name"> -->
+                                    {{ form.company_name }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Customer Name</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                    {{ form.customer_name }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Department Name</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                    {{ form.department }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Work Category</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                    {{ form.work_category }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Tender ID {{ form.errors.tender_id }}</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                    {{ form.tender_id }}
+                                </div>
+                            </div><!-- Col -->
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="control-label">Project Title {{ form.errors.project_title }}</label>
+                                    <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                    {{ form.project_title }}
+                                </div>
+                            </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Project Code {{form.errors.project_code  }}</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.project_code }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">State</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.state }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">City</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.city }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Area</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.area }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Tender Value</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.tender_value }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Tender Fees</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.tender_fees }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Tender Bid Value</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.tender_bit_value }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">EMD Amount</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.EMD_amount_value }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Tender Auction Date</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.tender_auction_date }}
+                            </div>
+                        </div><!-- Col -->
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label class="control-label">Tender Publish Date</label>
+                                <!-- <input type="text" class="form-control" placeholder="Enter last name"> -->
+                                {{ form.tender_publish_date }}
+                            </div>
+                        </div><!-- Col -->
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Project Description</label>
+                                    <!-- <textarea class="form-control" id="" rows="5"></textarea> -->
+                                    {{ form.project_description }}
+                                </div>
+                            </div><!-- Col -->
+                        </div><!-- Row -->
+                        <input type="submit" class="btn btn-primary submit" value="submit">
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
